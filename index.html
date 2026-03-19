@@ -518,7 +518,7 @@
             <input type="text" name="name" placeholder="Your name" required />
           </div>
           <div class="form-group">
-            <label>Phone</label>
+            <label>Phone <span style="font-weight:300;color:var(--muted);letter-spacing:0;">(optional)</span></label>
             <input type="tel" name="phone" placeholder="207-000-0000" />
           </div>
         </div>
@@ -594,6 +594,22 @@
       const form = e.target;
       const btn = form.querySelector('button[type="submit"]');
       const msg = document.getElementById('form-msg');
+      const phoneInput = form.querySelector('input[name="phone"]');
+
+      // Phone validation — strip all formatting and check for exactly 10 digits
+      const rawPhone = phoneInput.value.replace(/[\s\-\(\)\.]/g, '');
+      if (phoneInput.value.trim() !== '' && !/^\d{10}$/.test(rawPhone)) {
+        msg.textContent = 'Please enter a valid 10-digit phone number (e.g. 207-752-1336 or 2077521336).';
+        msg.style.color = '#e07070';
+        msg.style.display = 'block';
+        phoneInput.style.borderColor = '#e07070';
+        phoneInput.focus();
+        return;
+      }
+
+      // Clear any previous error state
+      phoneInput.style.borderColor = '';
+      msg.style.display = 'none';
       btn.disabled = true;
       btn.textContent = 'Sending...';
       try {

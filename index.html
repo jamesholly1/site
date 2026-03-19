@@ -2,404 +2,713 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Business Name</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Advanced Auto Detailing LLC — York, ME</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --primary:   #2563eb;
-      --dark:      #1e293b;
-      --light:     #f8fafc;
-      --gray:      #64748b;
-      --accent:    #0ea5e9;
+      --black: #0a0a0a;
+      --off-black: #111111;
+      --card-bg: #161616;
+      --border: #2a2a2a;
+      --gold: #5b8fa8;
+      --gold-light: #7aaec9;
+      --white: #f5f0e8;
+      --muted: #888;
+      --font-display: 'Bebas Neue', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
     }
+
+    html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'Segoe UI', sans-serif;
-      color: var(--dark);
-      line-height: 1.6;
+      background: var(--black);
+      color: var(--white);
+      font-family: var(--font-body);
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
     }
 
-    /* ── NAVBAR ── */
+    /* ── NAV ── */
     nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 5%;
-      background: #fff;
-      box-shadow: 0 2px 10px rgba(0,0,0,.08);
-      position: sticky;
-      top: 0;
-      z-index: 100;
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.25rem 4rem;
+      background: rgba(10,10,10,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 0.5px solid var(--border);
     }
-
-    .logo {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--primary);
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      letter-spacing: 0.08em;
+      color: var(--white);
+      text-decoration: none;
     }
-
+    .nav-logo span { color: var(--gold); }
     .nav-links { display: flex; gap: 2rem; list-style: none; }
     .nav-links a {
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
       text-decoration: none;
-      color: var(--dark);
-      font-weight: 500;
-      transition: color .2s;
+      transition: color 0.2s;
     }
-    .nav-links a:hover { color: var(--primary); }
+    .nav-links a:hover { color: var(--white); }
 
-    .nav-cta {
-      background: var(--primary);
-      color: #fff !important;
-      padding: .5rem 1.2rem;
-      border-radius: 6px;
-      transition: background .2s !important;
-    }
-    .nav-cta:hover { background: var(--accent) !important; color: #fff; }
 
-    /* hamburger (mobile) */
-    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
-    .hamburger span { width: 25px; height: 3px; background: var(--dark); border-radius: 3px; }
 
     /* ── HERO ── */
-    #hero {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      text-align: center;
-      min-height: 90vh;
-      padding: 4rem 5%;
-      background: linear-gradient(135deg, #1e3a8a 0%, #0ea5e9 100%);
-      color: #fff;
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 0 4rem 5rem;
+      position: relative;
+      background: var(--black);
+      overflow: hidden;
     }
-
-    #hero h1 { font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 1rem; }
-    #hero p  { font-size: 1.2rem; max-width: 600px; opacity: .9; margin-bottom: 2rem; }
-
-    .btn {
-      display: inline-block;
-      padding: .85rem 2rem;
-      border-radius: 8px;
+    .hero-bg {
+      position: absolute; inset: 0;
+      background: 
+        linear-gradient(to bottom, rgba(10,10,10,0.3) 0%, rgba(10,10,10,0.85) 70%, var(--black) 100%),
+        repeating-linear-gradient(
+          -45deg,
+          transparent,
+          transparent 2px,
+          rgba(91,143,168,0.03) 2px,
+          rgba(91,143,168,0.03) 4px
+        );
+    }
+    .hero-accent {
+      position: absolute; top: 0; right: 0;
+      width: 55%;  height: 100%;
+      background: radial-gradient(ellipse at 80% 40%, rgba(91,143,168,0.08) 0%, transparent 65%);
+    }
+    .hero-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.2rem;
+      opacity: 0; animation: fadeUp 0.6s 0.2s forwards;
+    }
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(4.5rem, 10vw, 9rem);
+      line-height: 0.92;
+      letter-spacing: 0.02em;
+      color: var(--white);
+      max-width: 800px;
+      opacity: 0; animation: fadeUp 0.7s 0.35s forwards;
+    }
+    .hero h1 em { color: var(--gold); font-style: normal; }
+    .hero-sub {
+      margin-top: 1.5rem;
       font-size: 1rem;
-      font-weight: 600;
+      color: var(--muted);
+      max-width: 440px;
+      opacity: 0; animation: fadeUp 0.7s 0.5s forwards;
+    }
+    .hero-actions {
+      margin-top: 2.5rem;
+      display: flex; gap: 1rem; align-items: center;
+      opacity: 0; animation: fadeUp 0.7s 0.65s forwards;
+    }
+    .btn-primary {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--black);
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
       text-decoration: none;
-      cursor: pointer;
-      transition: transform .2s, box-shadow .2s;
+      padding: 1rem 2.2rem;
+      transition: background 0.2s, transform 0.15s;
     }
-    .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,.2); }
-
-    .btn-white  { background: #fff; color: var(--primary); }
-    .btn-outline {
-      background: transparent;
-      border: 2px solid #fff;
-      color: #fff;
-      margin-left: 1rem;
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+    .btn-ghost {
+      display: inline-block;
+      border: 0.5px solid var(--border);
+      color: var(--muted);
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 1rem 2.2rem;
+      transition: border-color 0.2s, color 0.2s;
     }
-
-    /* ── ABOUT ── */
-    #about {
-      display: flex;
-      align-items: center;
-      gap: 3rem;
-      padding: 5rem 5%;
-      background: #fff;
+    .btn-ghost:hover { border-color: var(--gold); color: var(--white); }
+    .hero-scroll {
+      position: absolute; bottom: 2rem; right: 4rem;
+      font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--muted); writing-mode: vertical-rl;
+      opacity: 0; animation: fadeUp 0.6s 1s forwards;
     }
-
-    #about img {
-      width: 45%;
-      border-radius: 12px;
-      object-fit: cover;
-      box-shadow: 0 10px 30px rgba(0,0,0,.1);
+    .hero-scroll::before {
+      content: ''; display: block; width: 0.5px; height: 3rem;
+      background: var(--gold); margin: 0 auto 0.75rem;
     }
 
-    .about-text h2 { font-size: 2rem; margin-bottom: 1rem; color: var(--primary); }
-    .about-text p  { color: var(--gray); margin-bottom: 1rem; }
+    /* ── STATS ── */
+    .stats {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      border-top: 0.5px solid var(--border);
+      border-bottom: 0.5px solid var(--border);
+    }
+    .stat-item {
+      padding: 2.5rem 3rem;
+      border-right: 0.5px solid var(--border);
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-num {
+      font-family: var(--font-display);
+      font-size: 3.5rem;
+      color: var(--gold);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 0.4rem;
+    }
+
+    /* ── SECTION SHARED ── */
+    section { padding: 6rem 4rem; }
+    .section-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.8rem, 5vw, 4.5rem);
+      line-height: 1;
+      letter-spacing: 0.02em;
+      max-width: 700px;
+    }
+    .section-title em { color: var(--gold); font-style: normal; }
 
     /* ── SERVICES ── */
-    #services {
-      padding: 5rem 5%;
-      background: var(--light);
+    .services-intro {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+      align-items: end; margin-bottom: 4rem;
+    }
+    .services-intro p { color: var(--muted); max-width: 380px; }
+    .services-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+      background: var(--border);
+    }
+    .service-card {
+      background: var(--card-bg);
+      padding: 2.5rem;
+      transition: background 0.2s;
+      position: relative; overflow: hidden;
+    }
+    .service-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0;
+      height: 2px; background: var(--gold);
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.3s;
+    }
+    .service-card:hover { background: #1c1c1c; }
+    .service-card:hover::before { transform: scaleX(1); }
+    .service-icon {
+      font-size: 1.5rem; margin-bottom: 1.2rem;
+      width: 48px; height: 48px;
+      border: 0.5px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .service-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      letter-spacing: 0.04em;
+      margin-bottom: 0.75rem;
+    }
+    .service-card p { font-size: 0.88rem; color: var(--muted); line-height: 1.6; }
+
+    /* ── VEHICLES ── */
+    .vehicles { background: var(--off-black); }
+    .vehicles-grid {
+      display: grid; grid-template-columns: repeat(6, 1fr); gap: 1px;
+      background: var(--border); margin-top: 3rem;
+    }
+    .vehicle-item {
+      background: var(--card-bg);
+      padding: 2rem 1.5rem;
       text-align: center;
+      transition: background 0.2s;
+    }
+    .vehicle-item:hover { background: #1c1c1c; }
+    .vehicle-icon { font-size: 2rem; margin-bottom: 0.75rem; display: block; }
+    .vehicle-item span:last-child {
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
     }
 
-    .section-title { font-size: 2rem; margin-bottom: .5rem; }
-    .section-sub   { color: var(--gray); margin-bottom: 3rem; }
-
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1.5rem;
+    /* ── MOBILE CTA BAND ── */
+    .mobile-band {
+      background: #0e1e26;
+      border-top: 0.5px solid var(--border);
+      border-bottom: 0.5px solid var(--border);
+      padding: 3.5rem 4rem;
+      display: grid; grid-template-columns: 1fr auto;
+      align-items: center; gap: 2rem;
     }
-
-    .card {
-      background: #fff;
-      padding: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 4px 15px rgba(0,0,0,.07);
-      transition: transform .2s;
+    .mobile-band h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3rem);
+      color: var(--white);
+      letter-spacing: 0.03em;
     }
-    .card:hover { transform: translateY(-5px); }
-
-    .card-icon { font-size: 2.5rem; margin-bottom: 1rem; }
-    .card h3   { margin-bottom: .5rem; }
-    .card p    { color: var(--gray); font-size: .95rem; }
-
-    /* ── TESTIMONIALS ── */
-    #testimonials {
-      padding: 5rem 5%;
-      background: #fff;
-      text-align: center;
+    .mobile-band p { color: var(--muted); font-size: 0.9rem; margin-top: 0.4rem; }
+    .btn-dark {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--white);
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 1rem 2.2rem;
+      white-space: nowrap;
+      transition: background 0.2s;
     }
+    .btn-dark:hover { background: var(--gold-light); }
 
-    .testimonial-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 1.5rem;
-      margin-top: 2rem;
+    /* ── PROCESS ── */
+    .process-steps {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 1px; background: var(--border); margin-top: 3.5rem;
     }
-
-    .testimonial {
-      background: var(--light);
-      padding: 1.5rem;
-      border-radius: 12px;
-      border-left: 4px solid var(--primary);
-      text-align: left;
+    .process-step {
+      background: var(--card-bg);
+      padding: 2.5rem;
     }
+    .step-num {
+      font-family: var(--font-display);
+      font-size: 4rem;
+      color: var(--border);
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+    .process-step h3 {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      letter-spacing: 0.04em;
+      margin-bottom: 0.6rem;
+      color: var(--gold);
+    }
+    .process-step p { font-size: 0.85rem; color: var(--muted); }
 
-    .testimonial p   { color: var(--gray); font-style: italic; margin-bottom: 1rem; }
-    .testimonial .author { font-weight: 700; color: var(--dark); }
-    .stars { color: #f59e0b; font-size: 1.1rem; margin-bottom: .5rem; }
+    /* ── REVIEWS ── */
+    .reviews { background: var(--off-black); }
+    .reviews-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+      background: var(--border); margin-top: 3rem;
+    }
+    .review-card {
+      background: var(--card-bg);
+      padding: 2.5rem;
+    }
+    .review-stars { color: var(--gold); font-size: 0.85rem; margin-bottom: 1rem; letter-spacing: 0.1em; }
+    .review-text { font-size: 0.9rem; color: var(--muted); line-height: 1.7; margin-bottom: 1.5rem; font-style: italic; }
+    .review-author { font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--white); }
 
     /* ── CONTACT ── */
-    #contact {
-      padding: 5rem 5%;
-      background: var(--light);
+    .contact-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; margin-top: 3.5rem;
     }
-
-    .contact-wrapper {
-      display: flex;
-      gap: 3rem;
-      align-items: flex-start;
+    .contact-info { }
+    .contact-info p { color: var(--muted); margin-bottom: 2rem; }
+    .contact-detail {
+      display: flex; gap: 1rem; align-items: flex-start;
+      margin-bottom: 1.5rem;
     }
-
-    .contact-info { flex: 1; }
-    .contact-info h2 { font-size: 2rem; color: var(--primary); margin-bottom: 1rem; }
-    .contact-info p  { color: var(--gray); margin-bottom: 1.5rem; }
-
-    .info-item {
-      display: flex;
-      align-items: center;
-      gap: .75rem;
-      margin-bottom: 1rem;
-      color: var(--dark);
-    }
-    .info-item span { font-size: 1.3rem; }
-
-    form { flex: 1; display: flex; flex-direction: column; gap: 1rem; }
-
-    form input, form textarea {
-      padding: .85rem 1rem;
-      border: 1px solid #ddd;
-      border-radius: 8px;
+    .contact-detail-icon {
+      width: 40px; height: 40px; flex-shrink: 0;
+      border: 0.5px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
       font-size: 1rem;
-      font-family: inherit;
-      transition: border .2s;
     }
-    form input:focus, form textarea:focus {
+    .contact-detail-label {
+      font-size: 0.7rem; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 0.2rem;
+    }
+    .contact-detail-value { font-size: 0.95rem; color: var(--white); }
+    .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+    .form-group label {
+      font-size: 0.7rem; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--muted);
+    }
+    .form-group input, .form-group select, .form-group textarea {
+      background: var(--card-bg);
+      border: 0.5px solid var(--border);
+      color: var(--white);
+      padding: 0.85rem 1rem;
+      font-family: var(--font-body);
+      font-size: 0.9rem;
       outline: none;
-      border-color: var(--primary);
+      transition: border-color 0.2s;
+      resize: none;
     }
-    form textarea { resize: vertical; min-height: 140px; }
-
-    .btn-primary {
-      background: var(--primary);
-      color: #fff;
-      border: none;
-      font-size: 1rem;
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+      border-color: var(--gold);
     }
-    .btn-primary:hover { background: var(--accent); }
+    .form-group select option { background: var(--card-bg); }
 
     /* ── FOOTER ── */
     footer {
-      background: var(--dark);
-      color: #94a3b8;
-      text-align: center;
-      padding: 2rem 5%;
+      border-top: 0.5px solid var(--border);
+      padding: 2.5rem 4rem;
+      display: flex; justify-content: space-between; align-items: center;
     }
-    footer a { color: var(--accent); text-decoration: none; }
+    .footer-logo {
+      font-family: var(--font-display);
+      font-size: 1.2rem; letter-spacing: 0.08em;
+      color: var(--white); text-decoration: none;
+    }
+    .footer-logo span { color: var(--gold); }
+    footer p { font-size: 0.78rem; color: var(--muted); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .reveal {
+      opacity: 0; transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible { opacity: 1; transform: none; }
 
     /* ── RESPONSIVE ── */
-    @media (max-width: 768px) {
-      .nav-links { display: none; flex-direction: column; position: absolute;
-        top: 70px; left: 0; right: 0; background: #fff;
-        padding: 1rem 5%; box-shadow: 0 4px 10px rgba(0,0,0,.1); }
-      .nav-links.open { display: flex; }
-      .hamburger { display: flex; }
-
-      #about { flex-direction: column; }
-      #about img { width: 100%; }
-
-      .contact-wrapper { flex-direction: column; }
-      .btn-outline { margin: .5rem 0 0 0; }
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      section { padding: 4rem 1.5rem; }
+      .hero { padding: 0 1.5rem 4rem; }
+      .hero-scroll { display: none; }
+      .stats { grid-template-columns: repeat(2,1fr); }
+      .stat-item { border-right: none; border-bottom: 0.5px solid var(--border); }
+      .services-intro { grid-template-columns: 1fr; gap: 1.5rem; }
+      .services-grid { grid-template-columns: 1fr; }
+      .vehicles-grid { grid-template-columns: repeat(3,1fr); }
+      .mobile-band { grid-template-columns: 1fr; }
+      .process-steps { grid-template-columns: 1fr 1fr; }
+      .reviews-grid { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .form-row { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 1rem; text-align: center; }
     }
   </style>
 </head>
 <body>
 
-<!-- NAVBAR -->
-<nav>
-  <div class="logo">⚡ BizName</div>
-  <ul class="nav-links" id="navLinks">
-    <li><a href="#about">About</a></li>
-    <li><a href="#services">Services</a></li>
-    <li><a href="#testimonials">Reviews</a></li>
-    <li><a href="#contact" class="nav-cta">Contact Us</a></li>
-  </ul>
-  <div class="hamburger" onclick="toggleMenu()">
-    <span></span><span></span><span></span>
-  </div>
-</nav>
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">Advanced <span>Auto</span> Detailing</a>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#vehicles">Vehicles</a></li>
+      <li><a href="#process">Process</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
 
-<!-- HERO -->
-<section id="hero">
-  <h1>Quality Service You <br>Can Count On</h1>
-  <p>We help families and businesses with [your service]. Local, reliable, and affordable.</p>
-  <div>
-    <a href="#contact" class="btn btn-white">Get a Free Quote</a>
-    <a href="#services" class="btn btn-outline">Our Services</a>
-  </div>
-</section>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-accent"></div>
+    <p class="hero-label">York, Maine &mdash; By Appointment</p>
+    <h1>Detail That <em>Protects</em> Your Investment</h1>
+    <p class="hero-sub">Professional mobile auto detailing for cars, trucks, boats, motorcycles & RVs. We come to you — driveway, home, or office.</p>
+    <div class="hero-actions">
+      <a href="tel:2077521336" class="btn-primary">Call 207-752-1336</a>
+      <a href="#services" class="btn-ghost">View Services</a>
+    </div>
+    <span class="hero-scroll">Scroll</span>
+  </section>
 
-<!-- ABOUT -->
-<section id="about">
-  <!-- Replace src with a real image URL -->
-  <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=600"
-       alt="Our Team" />
-  <div class="about-text">
-    <h2>About Us</h2>
-    <p>We are a locally owned and operated business serving the [City] area since [Year].
-       Our team is dedicated to providing top-quality work at honest prices.</p>
-    <p>With over [X] years of experience, we've built our reputation on trust,
-       craftsmanship, and excellent customer service.</p>
-    <a href="#contact" class="btn btn-primary btn" style="margin-top:.5rem;">Work With Us</a>
-  </div>
-</section>
-
-<!-- SERVICES -->
-<section id="services">
-  <h2 class="section-title">What We Offer</h2>
-  <p class="section-sub">Tailored solutions for every need</p>
-  <div class="cards">
-    <div class="card">
-      <div class="card-icon">🔧</div>
-      <h3>Service One</h3>
-      <p>Brief description of this service and how it benefits the customer.</p>
+  <!-- STATS -->
+  <div class="stats reveal">
+    <div class="stat-item">
+      <div class="stat-num">10+</div>
+      <div class="stat-label">Years Experience</div>
     </div>
-    <div class="card">
-      <div class="card-icon">🏠</div>
-      <h3>Service Two</h3>
-      <p>Brief description of this service and how it benefits the customer.</p>
+    <div class="stat-item">
+      <div class="stat-num">98%</div>
+      <div class="stat-label">Customer Satisfaction</div>
     </div>
-    <div class="card">
-      <div class="card-icon">⭐</div>
-      <h3>Service Three</h3>
-      <p>Brief description of this service and how it benefits the customer.</p>
+    <div class="stat-item">
+      <div class="stat-num">6</div>
+      <div class="stat-label">Vehicle Types Serviced</div>
     </div>
-    <div class="card">
-      <div class="card-icon">🚀</div>
-      <h3>Service Four</h3>
-      <p>Brief description of this service and how it benefits the customer.</p>
+    <div class="stat-item">
+      <div class="stat-num">Free</div>
+      <div class="stat-label">Estimates Always</div>
     </div>
   </div>
-</section>
 
-<!-- TESTIMONIALS -->
-<section id="testimonials">
-  <h2 class="section-title">What Customers Say</h2>
-  <p class="section-sub">Real reviews from real people</p>
-  <div class="testimonial-grid">
-    <div class="testimonial">
-      <div class="stars">★★★★★</div>
-      <p>"Absolutely fantastic service! They were on time, professional, and the
-         quality of work was outstanding. Will definitely use again."</p>
-      <div class="author">— Jane D., Local Customer</div>
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="services-intro reveal">
+      <div>
+        <p class="section-label">What We Offer</p>
+        <h2 class="section-title">Every Service, <em>Flawlessly</em> Executed</h2>
+      </div>
+      <p>From a quick refresh to a full paint correction, every detail is handled with precision. No shortcuts. If you're not satisfied, we're not done.</p>
     </div>
-    <div class="testimonial">
-      <div class="stars">★★★★★</div>
-      <p>"Best in the area, hands down. Fair pricing and they went above and beyond
-         what I expected. Highly recommend to anyone!"</p>
-      <div class="author">— Mark T., Satisfied Client</div>
+    <div class="services-grid reveal">
+      <div class="service-card">
+        <div class="service-icon">✦</div>
+        <h3>Interior Detail</h3>
+        <p>Deep vacuum, steam cleaning, leather conditioning, odor elimination, and full surface wipe-down. Your interior restored to showroom condition.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">◈</div>
+        <h3>Exterior Detail</h3>
+        <p>Hand wash, clay bar treatment, paint decontamination, wheel and tire shine, and a protective sealant to guard your finish.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">❋</div>
+        <h3>Full Detail</h3>
+        <p>The complete package — interior and exterior combined. Ideal before a sale, after a long winter, or when your vehicle deserves the best.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">◇</div>
+        <h3>Paint Correction</h3>
+        <p>Multi-stage machine polishing to remove swirl marks, scratches, and oxidation. Restores true depth and gloss to your paint.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">⬡</div>
+        <h3>Ceramic Coating</h3>
+        <p>Long-lasting nano-ceramic protection that repels water, contaminants, and UV damage for years. The ultimate investment in your paint.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">◉</div>
+        <h3>Mobile Service</h3>
+        <p>We come to you. Home, office, or wherever your vehicle is parked. No drop-off, no waiting. Convenience is part of the service.</p>
+      </div>
     </div>
-    <div class="testimonial">
-      <div class="stars">★★★★★</div>
-      <p>"I've tried other companies before but none compare. Quick response,
-         great communication, and excellent results every time."</p>
-      <div class="author">— Sarah K., Repeat Customer</div>
+  </section>
+
+  <!-- VEHICLES -->
+  <section id="vehicles" class="vehicles">
+    <div class="reveal">
+      <p class="section-label">We Service</p>
+      <h2 class="section-title">Any Vehicle, <em>Any Size</em></h2>
     </div>
+    <div class="vehicles-grid reveal">
+      <div class="vehicle-item">
+        <span class="vehicle-icon">🚗</span>
+        <span>Cars</span>
+      </div>
+      <div class="vehicle-item">
+        <span class="vehicle-icon">🛻</span>
+        <span>Trucks & SUVs</span>
+      </div>
+      <div class="vehicle-item">
+        <span class="vehicle-icon">⛵</span>
+        <span>Boats</span>
+      </div>
+      <div class="vehicle-item">
+        <span class="vehicle-icon">🏍️</span>
+        <span>Motorcycles</span>
+      </div>
+      <div class="vehicle-item">
+        <span class="vehicle-icon">🚐</span>
+        <span>RVs & Campers</span>
+      </div>
+      <div class="vehicle-item">
+        <span class="vehicle-icon">🚚</span>
+        <span>Commercial</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- MOBILE BAND -->
+  <div class="mobile-band reveal">
+    <div>
+      <h2>We Come To You — No Drop-Off Needed</h2>
+      <p>Schedule your mobile detail and we'll show up at your door with everything we need.</p>
+    </div>
+    <a href="tel:2077521336" class="btn-dark">Book Mobile Detail</a>
   </div>
-</section>
 
-<!-- CONTACT -->
-<section id="contact">
-  <div class="contact-wrapper">
-    <div class="contact-info">
-      <h2>Get In Touch</h2>
-      <p>Ready to get started or have a question? Reach out — we'd love to hear from you!</p>
-      <div class="info-item"><span>📍</span> 123 Main Street, City, State 00000</div>
-      <div class="info-item"><span>📞</span> (555) 123-4567</div>
-      <div class="info-item"><span>✉️</span> hello@yourbusiness.com</div>
-      <div class="info-item"><span>🕐</span> Mon–Fri: 8am – 6pm</div>
+  <!-- PROCESS -->
+  <section id="process">
+    <div class="reveal">
+      <p class="section-label">How It Works</p>
+      <h2 class="section-title">Simple, <em>Transparent</em> Process</h2>
     </div>
-    <form onsubmit="handleSubmit(event)">
-      <input type="text"  placeholder="Your Name"    required />
-      <input type="email" placeholder="Your Email"   required />
-      <input type="tel"   placeholder="Phone Number" />
-      <textarea           placeholder="How can we help you?"></textarea>
-      <button type="submit" class="btn btn-primary btn">Send Message</button>
-    </form>
-  </div>
-</section>
+    <div class="process-steps reveal">
+      <div class="process-step">
+        <div class="step-num">01</div>
+        <h3>Call or Text</h3>
+        <p>Reach out at 207-752-1336. We'll ask a few quick questions about your vehicle and what you're looking for.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">02</div>
+        <h3>Free Estimate</h3>
+        <p>We give you a clear, upfront price — no surprises. All estimates are free with no obligation.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">03</div>
+        <h3>We Show Up</h3>
+        <p>We arrive at your location with all our own equipment, water, and supplies. You don't need to do a thing.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">04</div>
+        <h3>Spotless Results</h3>
+        <p>We don't leave until you're satisfied. If something isn't right, we make it right — every time.</p>
+      </div>
+    </div>
+  </section>
 
-<!-- FOOTER -->
-<footer>
-  <p>© 2024 <strong>BizName</strong> · All rights reserved ·
-     <a href="#">Privacy Policy</a></p>
-  <p style="margin-top:.5rem; font-size:.85rem;">
-    Proudly serving [City] and surrounding areas
-  </p>
-</footer>
+  <!-- REVIEWS -->
+  <section id="reviews" class="reviews">
+    <div class="reveal">
+      <p class="section-label">What Customers Say</p>
+      <h2 class="section-title">98% Would <em>Recommend</em> Us</h2>
+    </div>
+    <div class="reviews-grid reveal">
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Absolutely incredible work. My truck looked better than when I bought it. He was on time, professional, and didn't leave until everything was perfect."</p>
+        <span class="review-author">— Mike T., York ME</span>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"I had my boat detailed before the season and it came back looking brand new. Will not go anywhere else. The mobile service is so convenient."</p>
+        <span class="review-author">— Sarah K., Kittery ME</span>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Called last minute and they fit me in quickly. The interior was a disaster and now it looks showroom fresh. Worth every penny."</p>
+        <span class="review-author">— James R., Portsmouth NH</span>
+      </div>
+    </div>
+  </section>
 
-<script>
-  // Mobile menu toggle
-  function toggleMenu() {
-    document.getElementById('navLinks').classList.toggle('open');
-  }
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="reveal">
+      <p class="section-label">Get In Touch</p>
+      <h2 class="section-title">Book Your <em>Detail</em></h2>
+    </div>
+    <div class="contact-grid reveal">
+      <div class="contact-info">
+        <p>By appointment only. Call or text to schedule — we'll get back to you fast. Free estimates always.</p>
+        <div class="contact-detail">
+          <div class="contact-detail-icon">📞</div>
+          <div>
+            <div class="contact-detail-label">Phone / Text</div>
+            <div class="contact-detail-value"><a href="tel:2077521336" style="color:inherit;text-decoration:none;">207-752-1336</a></div>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-detail-icon">📍</div>
+          <div>
+            <div class="contact-detail-label">Location</div>
+            <div class="contact-detail-value">York, ME 03909<br><span style="font-size:0.82rem;color:var(--muted);">Serving Southern Maine & Seacoast NH</span></div>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-detail-icon">🕐</div>
+          <div>
+            <div class="contact-detail-label">Hours</div>
+            <div class="contact-detail-value">By Appointment<br><span style="font-size:0.82rem;color:var(--muted);">7 days a week</span></div>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-detail-icon">📷</div>
+          <div>
+            <div class="contact-detail-label">Instagram</div>
+            <div class="contact-detail-value"><a href="https://instagram.com/advanced_automotive_detailing" target="_blank" style="color:var(--gold);text-decoration:none;">@advanced_automotive_detailing</a></div>
+          </div>
+        </div>
+      </div>
+      <form class="contact-form" onsubmit="handleSubmit(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Name</label>
+            <input type="text" placeholder="Your name" required />
+          </div>
+          <div class="form-group">
+            <label>Phone</label>
+            <input type="tel" placeholder="207-000-0000" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Vehicle Type</label>
+          <select>
+            <option value="">Select vehicle type</option>
+            <option>Car / Sedan</option>
+            <option>Truck / SUV</option>
+            <option>Motorcycle</option>
+            <option>Boat</option>
+            <option>RV / Camper</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Service Interested In</label>
+          <select>
+            <option value="">Select a service</option>
+            <option>Interior Detail</option>
+            <option>Exterior Detail</option>
+            <option>Full Detail</option>
+            <option>Paint Correction</option>
+            <option>Ceramic Coating</option>
+            <option>Not sure — need a quote</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Message</label>
+          <textarea rows="4" placeholder="Tell us about your vehicle, any concerns, or preferred timing..."></textarea>
+        </div>
+        <button type="submit" class="btn-primary" style="border:none;cursor:pointer;font-family:var(--font-body);width:100%;">Send Message</button>
+        <p id="form-msg" style="font-size:0.82rem;color:var(--gold);display:none;text-align:center;">Thanks! We'll be in touch shortly.</p>
+      </form>
+    </div>
+  </section>
 
-  // Close menu on link click
-  document.querySelectorAll('.nav-links a').forEach(link => {
-    link.addEventListener('click', () => {
-      document.getElementById('navLinks').classList.remove('open');
-    });
-  });
+  <!-- FOOTER -->
+  <footer>
+    <a href="#" class="footer-logo">Advanced <span>Auto</span> Detailing <span style="color:var(--muted);font-size:0.85rem;">LLC</span></a>
+    <p>© 2025 Advanced Auto Detailing LLC &mdash; York, ME 03909</p>
+    <p style="color:var(--muted);font-size:0.75rem;">207-752-1336</p>
+  </footer>
 
-  // Smooth scroll
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
+  <script>
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+    }, { threshold: 0.1 });
+    reveals.forEach(r => observer.observe(r));
+
+    // Form
+    function handleSubmit(e) {
       e.preventDefault();
-      document.querySelector(this.getAttribute('href'))
-              ?.scrollIntoView({ behavior: 'smooth' });
-    });
-  });
-
-  // Form submit handler
-  function handleSubmit(e) {
-    e.preventDefault();
-    alert('Thanks! We\'ll be in touch soon. 🎉');
-    e.target.reset();
-  }
-</script>
-
+      document.getElementById('form-msg').style.display = 'block';
+      e.target.reset();
+    }
+  </script>
 </body>
 </html>
